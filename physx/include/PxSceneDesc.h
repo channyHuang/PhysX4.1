@@ -148,7 +148,8 @@ struct PxSolverType
 	enum Enum
 	{
 		ePGS,			//!< Default Projected Gauss-Seidel iterative solver
-		eTGS			//!< Temporal Gauss-Seidel solver
+		eTGS,			//!< Temporal Gauss-Seidel solver
+		eLDL
 	};
 };
 

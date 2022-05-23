@@ -410,6 +410,13 @@ Context* createTGSDynamicsContext(PxcNpMemBlockPool* memBlockPool,
 	const bool enableStabilization, const bool useEnhancedDeterminism, const bool useAdaptiveForce, const PxReal lengthScale
 );
 
+Context* createDynamicsLDLContext(PxcNpMemBlockPool* memBlockPool,
+	PxcScratchAllocator& scratchAllocator, Cm::FlushPool& taskPool,
+	PxvSimStats& simStats, PxTaskManager* taskManager, Ps::VirtualAllocatorCallback* allocatorCallback, PxsMaterialManager* materialManager,
+	IG::IslandSim* accurateIslandSim, PxU64 contextID,
+	const bool enableStabilization, const bool useEnhancedDeterminism, const bool useAdaptiveForce, const PxReal maxBiasCoefficient,
+	const bool frictionEveryIteration
+);
 
 }
 

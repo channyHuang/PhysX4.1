@@ -790,6 +790,14 @@ Sc::Scene::Scene(const PxSceneDesc& desc, PxU64 contextID) :
 				&mSimpleIslandManager->getAccurateIslandSim(), contextID, mEnableStabilization, useEnhancedDeterminism, useAdaptiveForce, desc.maxBiasCoefficient,
 				!!(desc.flags & PxSceneFlag::eENABLE_FRICTION_EVERY_ITERATION));
 		}
+		else if (desc.solverType == PxSolverType::eLDL)
+		{
+			mDynamicsContext = createDynamicsLDLContext
+			(&mLLContext->getNpMemBlockPool(), mLLContext->getScratchAllocator(),
+				mLLContext->getTaskPool(), mLLContext->getSimStats(), &mLLContext->getTaskManager(), allocatorCallback, &getMaterialManager(),
+				&mSimpleIslandManager->getAccurateIslandSim(), contextID, mEnableStabilization, useEnhancedDeterminism, useAdaptiveForce, desc.maxBiasCoefficient,
+				!!(desc.flags & PxSceneFlag::eENABLE_FRICTION_EVERY_ITERATION));
+		}
 		else
 		{
 			mDynamicsContext = createTGSDynamicsContext
