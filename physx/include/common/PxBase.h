@@ -190,6 +190,7 @@ private:
 protected:
 	PxType									mConcreteType;			// concrete type identifier - see PxConcreteType.
 	PxBaseFlags								mBaseFlags;				// internal flags
+	PxU8 colorx, colory, colorz;
 
 };
 

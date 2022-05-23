@@ -221,6 +221,13 @@ public:
 	*/
 	virtual		PxU32			getConstraints(PxConstraint** userBuffer, PxU32 bufferSize, PxU32 startIndex=0)		const	= 0;
 
+	virtual PxVec3 getColor() { return PxVec3(colorx / 255.f, colory / 255.f, colorz / 255.f); }
+	virtual void setColor(const PxVec3& _color) { 
+		colorx = static_cast<PxU8>(_color.x * 255);
+		colory = static_cast<PxU8>(_color.y * 255);
+		colorz = static_cast<PxU8>(_color.z * 255); 
+	}
+ 
 protected:
 	PX_INLINE					PxRigidActor(PxType concreteType, PxBaseFlags baseFlags) : PxActor(concreteType, baseFlags) {}
 	PX_INLINE					PxRigidActor(PxBaseFlags baseFlags) : PxActor(baseFlags) {}

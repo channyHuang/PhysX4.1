@@ -314,6 +314,8 @@ void renderActors(PxRigidActor** actors, const PxU32 numActors, bool shadows, co
 	PxShape* shapes[MAX_NUM_ACTOR_SHAPES];
 	for(PxU32 i=0;i<numActors;i++)
 	{
+		PxVec3 actorColor = actors[i]->getColor();
+
 		const PxU32 nbShapes = actors[i]->getNbShapes();
 		PX_ASSERT(nbShapes <= MAX_NUM_ACTOR_SHAPES);
 		actors[i]->getShapes(shapes, nbShapes);
@@ -337,7 +339,8 @@ void renderActors(PxRigidActor** actors, const PxU32 numActors, bool shadows, co
 				glColor4f(darkColor.x, darkColor.y, darkColor.z, 1.0f);
 			}
 			else
-				glColor4f(color.x, color.y, color.z, 1.0f);
+				//glColor4f(color.x, color.y, color.z, 1.0f);
+				glColor4f(actorColor.x, actorColor.y, actorColor.z, 1.f);
 			renderGeometryHolder(h);
 			glPopMatrix();
 
@@ -356,6 +359,19 @@ void renderActors(PxRigidActor** actors, const PxU32 numActors, bool shadows, co
 			}
 		}
 	}
+}
+
+void renderLine(const physx::PxVec3& p0, const physx::PxVec3& p1, const physx::PxVec3& color) {
+	//glDisable(GL_LIGHTING);
+	glColor4f(color.x, color.y, color.z, 1.0f);
+	const PxVec3 Pts[] = { p0, p1 };
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glVertexPointer(3, GL_FLOAT, sizeof(PxVec3), &Pts[0].x);
+	glLineWidth(3.f);
+	glDrawArrays(GL_LINES, 0, 2);
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	//glEnable(GL_LIGHTING);
 }
 
 /*static const PxU32 gGeomSizes[] = {

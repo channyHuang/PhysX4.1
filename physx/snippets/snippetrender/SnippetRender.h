@@ -63,6 +63,8 @@ namespace Snippets
 	void renderActors(physx::PxRigidActor** actors, const physx::PxU32 numActors, bool shadows = false, const physx::PxVec3& color = physx::PxVec3(0.0f, 0.75f, 0.0f), TriggerRender* cb=nullptr);
 //	void renderGeoms(const physx::PxU32 nbGeoms, const physx::PxGeometry* geoms, const physx::PxTransform* poses, bool shadows, const physx::PxVec3& color);
 	void renderGeoms(const physx::PxU32 nbGeoms, const physx::PxGeometryHolder* geoms, const physx::PxTransform* poses, bool shadows, const physx::PxVec3& color);
+
+	void renderLine(const physx::PxVec3& p0, const physx::PxVec3& p1, const physx::PxVec3& color);
 }
 
 #endif //PHYSX_SNIPPET_RENDER_H
