@@ -447,7 +447,7 @@ namespace Sc
 					void						unregisterShapeFromNphase(const ShapeCore& shapeCore);
 
 					void						notifyNphaseOnUpdateShapeMaterial(const ShapeCore& shapeCore);
-
+					void						updateKillPairs(PxU32 id0, PxU32 id1);
 	// Get an array of the active actors.
 	PX_FORCE_INLINE	BodyCore*const*				getActiveBodiesArray() const { return mActiveBodies.begin(); }
 	PX_FORCE_INLINE	PxU32						getNumActiveBodies() const { return mActiveBodies.size(); }

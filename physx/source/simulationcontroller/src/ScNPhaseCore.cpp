@@ -635,6 +635,9 @@ void Sc::NPhaseCore::runOverlapFilters(	PxU32 nbToProcess, const Bp::AABBOverlap
 				keepMap[i / 32] |= (1 << (i & 31));
 			}
 		}
+		else {
+			mOwnerScene.updateKillPairs(pair.mId0, pair.mId1);
+		}
 	}
 
 	nbToKeep_ = nbToKeep;

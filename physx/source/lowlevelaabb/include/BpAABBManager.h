@@ -96,6 +96,7 @@
 				void*		mUserData;			//For deleted pairs, this is the user data written by the application to the pair
 			};*/
 			void*		mPairUserData;			//For deleted pairs, this is the user data written by the application to the pair
+			PxU32 mId0 = 0xffffffff, mId1 = 0xffffffff;
 		};
 
 		struct BpCacheData : public Ps::SListEntry
@@ -596,6 +597,7 @@
 			public:
 			void processBPCreatedPair(const BroadPhasePair& pair);
 			void processBPDeletedPair(const BroadPhasePair& pair);
+			void updateKillPairs(PxU32 id0, PxU32 id1);
 	//		bool checkID(ShapeHandle id);
 			friend class PersistentActorAggregatePair;
 			friend class PersistentAggregateAggregatePair;

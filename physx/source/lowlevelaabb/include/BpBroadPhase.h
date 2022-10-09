@@ -318,6 +318,8 @@ public:
 
 	// PT: for unit-testing the non-GPU versions
 	virtual	void					singleThreadedUpdate(PxcScratchAllocator* /*scratchAllocator*/, const BroadPhaseUpdateData& /*updateData*/){}
+	virtual void					updateKillPairs(PxU32 /*id0*/, PxU32 /*id1*/ ) {};
+
 };
 
 } //namespace Bp

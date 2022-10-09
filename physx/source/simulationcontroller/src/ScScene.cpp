@@ -6057,6 +6057,11 @@ void Sc::Scene::preallocateContactManagers(PxBaseTask* continuation)
 		Local::processBatch(createdCurrIdx, createdStartIdx, suppressedCurrIdx, suppressedStartIdx, batchSize, mLLContext, mNPhaseCore, createTask, continuation, cms, shapeInter, markerIter);
 }
 
+void Sc::Scene::updateKillPairs(PxU32 id0, PxU32 id1)
+{
+	mAABBManager->updateKillPairs(id0, id1);
+}
+
 void Sc::Scene::finishBroadPhaseStage2(const PxU32 ccdPass)
 {
 	PX_PROFILE_ZONE("Sc::Scene::finishBroadPhase2", getContextId());

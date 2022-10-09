@@ -71,6 +71,7 @@ namespace Bp
 		virtual BroadPhasePair*				getBroadPhasePairs() const  {return NULL;}  //KS - TODO - implement this!!!
 		virtual void						deletePairs(){}								//KS - TODO - implement this!!!
 		virtual	void						singleThreadedUpdate(PxcScratchAllocator* scratchAllocator, const BroadPhaseUpdateData& updateData);
+		virtual void						updateKillPairs(PxU32 id0, PxU32 id1);
 	//~BroadPhase
 
 		internalABP::ABP*					mABP;		// PT: TODO: aggregate

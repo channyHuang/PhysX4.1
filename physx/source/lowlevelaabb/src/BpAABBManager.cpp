@@ -1921,6 +1921,11 @@ void AABBManager::processBPDeletedPair(const BroadPhasePair& pair)
 	p->mShouldBeDeleted = true;
 }
 
+void AABBManager::updateKillPairs(PxU32 id0, PxU32 id1)
+{
+	mBroadPhase.updateKillPairs(id0, id1);
+}
+
 struct CreatedPairHandler
 {
 	static PX_FORCE_INLINE void processPair(AABBManager& manager, const BroadPhasePair& pair) { manager.processBPCreatedPair(pair); }
@@ -2388,6 +2393,8 @@ void AABBManager::postBpStage3(PxBaseTask*)
 					const PxU32 id1 = PxU32(size_t(mCreatedOverlaps[idx][i].mUserData1));
 					mCreatedOverlaps[idx][i].mUserData0 = mVolumeData[id0].getUserData();
 					mCreatedOverlaps[idx][i].mUserData1 = mVolumeData[id1].getUserData();
+					mCreatedOverlaps[idx][i].mId0 = id0;
+					mCreatedOverlaps[idx][i].mId1 = id1;
 					if (nbDestroyedOverlaps)
 						mCreatedPairs.insert(Pair(id0, id1));
 				}

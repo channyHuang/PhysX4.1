@@ -1781,6 +1781,7 @@ void BoxManager::finalize()
 
 						void					Region_prepareOverlaps();
 						void					Region_findOverlaps(ABP_PairManager& pairManager);
+						void					updateKillPairs(PxU32 id0, PxU32 id1);
 
 						ABP_MM					mMM;
 						BoxManager				mSBM;
@@ -3080,6 +3081,12 @@ void ABP::setTransientData(const PxBounds3* bounds, const PxReal* contactDistanc
 	mDBM.setSourceData(bounds, contactDistance);
 	mKBM.setSourceData(bounds, contactDistance);
 }
+
+void ABP::updateKillPairs(PxU32 id0, PxU32 id1)
+{
+	mShared.mUpdatedObjects.setBitChecked(id0);
+	mShared.mUpdatedObjects.setBitChecked(id1);
+}
 ///////////////////////////////////////////////////////////////////////////////
 
 }
@@ -3390,7 +3397,10 @@ void BroadPhaseABP::setScratchAllocator(PxcScratchAllocator* scratchAllocator)
 	mABP->mMM.mScratchAllocator = scratchAllocator;
 }
 
-
+void BroadPhaseABP::updateKillPairs(PxU32 id0, PxU32 id1)
+{
+	mABP->updateKillPairs(id0, id1);
+}
 
 BroadPhase* createABP(
 	const PxU32 maxNbBroadPhaseOverlaps,
